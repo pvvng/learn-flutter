@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
 
+class Player {
+  // not required (optinal)
+  String? name;
+  int age;
+
+  // position, named parameter
+  Player(
+    this.age, {
+    this.name,
+  });
+}
+
 void main() {
+  var player = Player(20);
+
   runApp(const MyApp());
 }
 
@@ -20,7 +34,9 @@ class MyApp extends StatelessWidget {
       // 위젯은 Scaffold(건물 뼈대 너낌)를 가진다.
       home: Scaffold(
         appBar: AppBar(
+          // named parameter
           title: Text(
+            // position parameter
             "Flutter App",
             style: TextStyle(
               color: Colors.white,
