@@ -13,6 +13,9 @@ class MyApp extends StatelessWidget {
   // 모든 위젯은 build 메서드를 사용해야 한다
   @override
   Widget build(BuildContext context) {
+    // 앱의 기본 디자인 정하기
+    // CupertinoApp -> ios
+    // MaterialApp -> android
     return MaterialApp(
       // 위젯은 Scaffold(건물 뼈대 너낌)를 가진다.
       home: Scaffold(
