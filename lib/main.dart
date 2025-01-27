@@ -1,20 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Player {
-  // not required (optinal)
-  String? name;
-  int age;
-
-  // position, named parameter
-  Player(
-    this.age, {
-    this.name,
-  });
-}
-
 void main() {
-  var player = Player(20);
-
   runApp(const MyApp());
 }
 
@@ -33,20 +19,42 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       // 위젯은 Scaffold(건물 뼈대 너낌)를 가진다.
       home: Scaffold(
-        appBar: AppBar(
-          // named parameter
-          title: Text(
-            // position parameter
-            "Flutter App",
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-          backgroundColor: Colors.blue[600],
-        ),
-        body: Center(
-          child: Text("Hello World!"),
-        ),
+        backgroundColor: Color(0xFF181818),
+        // Column -> 상하로 쌓기
+        body: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 40),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 50,
+                ),
+                // Row -> 좌우로 정렬
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          "Hey Kim",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 28,
+                              fontWeight: FontWeight.w800),
+                        ),
+                        Text(
+                          "Wellcome Back",
+                          style: TextStyle(
+                            color: Colors.white.withAlpha(180),
+                            fontSize: 18,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            )),
       ),
     );
   }
