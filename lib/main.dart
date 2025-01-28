@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toonflix/widget/button.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,7 +9,9 @@ void main() {
 // class를 위젯으로 만들기 위해서는 상속이 필요함
 class MyApp extends StatelessWidget {
   // 상수화 시켜서 컴파일하기 편하게 만들기
-  const MyApp({super.key});
+  const MyApp({
+    super.key,
+  });
 
   // 모든 위젯은 build 메서드를 사용해야 한다
   @override
@@ -22,7 +25,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Color(0xFF181818),
         // Column -> 상하로 쌓기
         body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30),
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -79,25 +82,16 @@ class MyApp extends StatelessWidget {
                   height: 30,
                 ),
                 Row(
-                  // mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Color(0xFFF2B33A),
-                        borderRadius: BorderRadius.circular(35),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 15,
-                          horizontal: 40,
-                        ),
-                        child: Text(
-                          "transfer",
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
+                    MyButton(
+                      "transfer",
+                      backgroundColor: Color(0xFFF2B33A),
+                    ),
+                    MyButton(
+                      "request",
+                      textColor: Colors.white,
+                      backgroundColor: Color(0xFF1F2123),
                     ),
                   ],
                 ),
