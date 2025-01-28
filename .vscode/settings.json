@@ -1,0 +1,9 @@
+// 이 프로젝트에서만 적용할 세팅들
+{
+  "dart.previewFlutterUiGuides": true,
+  "[dart]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit"
+    }
+  }
+}
