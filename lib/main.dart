@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Color(0xFF181818),
         // Column -> 상하로 쌓기
+        // SingleChildScrollView -> 스크롤 가능하도록
         body: SingleChildScrollView(
           child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -125,25 +126,21 @@ class MyApp extends StatelessWidget {
                     amount: "6 428",
                     code: "EUR",
                     icon: Icons.euro_rounded,
+                    order: 0,
                   ),
-                  Transform.translate(
-                    offset: Offset(0, -25),
-                    child: MyCard(
-                      name: "BitCoin",
-                      amount: "9 785",
-                      code: "BTC",
-                      icon: Icons.currency_bitcoin_rounded,
-                      isInverted: true,
-                    ),
+                  MyCard(
+                    name: "BitCoin",
+                    amount: "9 785",
+                    code: "BTC",
+                    icon: Icons.currency_bitcoin_rounded,
+                    order: 1,
                   ),
-                  Transform.translate(
-                    offset: Offset(0, -50),
-                    child: MyCard(
-                      name: "Dollar",
-                      amount: "428",
-                      code: "USD",
-                      icon: Icons.attach_money_rounded,
-                    ),
+                  MyCard(
+                    name: "Dollar",
+                    amount: "428",
+                    code: "USD",
+                    icon: Icons.attach_money_rounded,
+                    order: 2,
                   ),
                 ],
               )),
