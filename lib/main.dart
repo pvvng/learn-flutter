@@ -22,11 +22,12 @@ class MyApp extends StatelessWidget {
         backgroundColor: Color(0xFF181818),
         // Column -> 상하로 쌓기
         body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 40),
+            padding: EdgeInsets.symmetric(horizontal: 30),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
                 // Row -> 좌우로 정렬
                 Row(
@@ -40,17 +41,63 @@ class MyApp extends StatelessWidget {
                           "Hey Kim",
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 28,
+                              fontSize: 24,
                               fontWeight: FontWeight.w800),
                         ),
                         Text(
                           "Wellcome Back",
                           style: TextStyle(
                             color: Colors.white.withAlpha(180),
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                         ),
                       ],
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Text(
+                  "Total Balance",
+                  style: TextStyle(
+                    color: Colors.white.withAlpha(200),
+                    fontSize: 16,
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "\$5 194 382",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 38),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xFFF2B33A),
+                        borderRadius: BorderRadius.circular(35),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 15,
+                          horizontal: 40,
+                        ),
+                        child: Text(
+                          "transfer",
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
