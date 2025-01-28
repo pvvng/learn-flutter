@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
+                      textDirection: TextDirection.ltr, // 텍스트 방향 설정
                       children: [
                         Text(
                           "Hey Kim",
