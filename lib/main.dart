@@ -25,106 +25,129 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Color(0xFF181818),
         // Column -> 상하로 쌓기
-        body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 30,
-                ),
-                // Row -> 좌우로 정렬
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      textDirection: TextDirection.ltr, // 텍스트 방향 설정
-                      children: [
-                        Text(
-                          "Hey Kim",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w800),
-                        ),
-                        Text(
-                          "Wellcome Back",
-                          style: TextStyle(
-                            color: Colors.white.withAlpha(180),
-                            fontSize: 16,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 50,
-                ),
-                Text(
-                  "Total Balance",
-                  style: TextStyle(
-                    color: Colors.white.withAlpha(200),
-                    fontSize: 16,
+        body: SingleChildScrollView(
+          child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 50,
                   ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "\$5 194 382",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 38),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MyButton(
-                      "transfer",
-                      backgroundColor: Color(0xFFF2B33A),
+                  // Row -> 좌우로 정렬
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        textDirection: TextDirection.ltr, // 텍스트 방향 설정
+                        children: [
+                          Text(
+                            "Hey Kim",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 24,
+                                fontWeight: FontWeight.w800),
+                          ),
+                          Text(
+                            "Wellcome Back",
+                            style: TextStyle(
+                              color: Colors.white.withAlpha(180),
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Text(
+                    "Total Balance",
+                    style: TextStyle(
+                      color: Colors.white.withAlpha(200),
+                      fontSize: 16,
                     ),
-                    MyButton(
-                      "request",
-                      textColor: Colors.white,
-                      backgroundColor: Color(0xFF1F2123),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 60,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Wallets",
-                      style: TextStyle(
+                  ),
+                  Text(
+                    "\$5 194 382",
+                    style: TextStyle(
                         color: Colors.white,
-                        fontSize: 30,
                         fontWeight: FontWeight.w700,
+                        fontSize: 38),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      MyButton(
+                        "transfer",
+                        backgroundColor: Color(0xFFF2B33A),
                       ),
+                      MyButton(
+                        "request",
+                        textColor: Colors.white,
+                        backgroundColor: Color(0xFF1F2123),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 70,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Wallets",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      Text(
+                        "View All",
+                        style: TextStyle(
+                          color: Colors.white.withAlpha(200),
+                          fontSize: 18,
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  MyCard(
+                    name: "Euro",
+                    amount: "6 428",
+                    code: "EUR",
+                    icon: Icons.euro_rounded,
+                  ),
+                  Transform.translate(
+                    offset: Offset(0, -25),
+                    child: MyCard(
+                      name: "BitCoin",
+                      amount: "9 785",
+                      code: "BTC",
+                      icon: Icons.currency_bitcoin_rounded,
+                      isInverted: true,
                     ),
-                    Text(
-                      "View All",
-                      style: TextStyle(
-                        color: Colors.white.withAlpha(200),
-                        fontSize: 18,
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                MyCard(),
-              ],
-            )),
+                  ),
+                  Transform.translate(
+                    offset: Offset(0, -50),
+                    child: MyCard(
+                      name: "Dollar",
+                      amount: "428",
+                      code: "USD",
+                      icon: Icons.attach_money_rounded,
+                    ),
+                  ),
+                ],
+              )),
+        ),
       ),
     );
   }

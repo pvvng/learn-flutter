@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
 
 class MyCard extends StatelessWidget {
+  final String name, amount, code;
+  final IconData icon;
+  final bool isInverted;
+
+  // _ =>private
+  final _blackColor = const Color(0xFF1F2123);
+
   const MyCard({
     super.key,
+    required this.name,
+    required this.amount,
+    required this.code,
+    required this.icon,
+    this.isInverted = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      // overflow controll
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isInverted ? Colors.white : _blackColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Padding(
@@ -22,9 +35,10 @@ class MyCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Euro",
+                  name,
                   style: TextStyle(
                     fontSize: 28,
+                    color: isInverted ? _blackColor : Colors.white,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -34,9 +48,9 @@ class MyCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "6 428",
+                      amount,
                       style: TextStyle(
-                        color: Colors.black,
+                        color: isInverted ? _blackColor : Colors.white,
                         fontSize: 18,
                       ),
                     ),
@@ -44,9 +58,11 @@ class MyCard extends StatelessWidget {
                       width: 8,
                     ),
                     Text(
-                      "EUR",
+                      code,
                       style: TextStyle(
-                        color: Colors.black.withAlpha(200),
+                        color: isInverted
+                            ? _blackColor.withAlpha(200)
+                            : Colors.white.withAlpha(200),
                         fontSize: 18,
                       ),
                     ),
@@ -59,8 +75,10 @@ class MyCard extends StatelessWidget {
               child: Transform.translate(
                 offset: Offset(-5, 12),
                 child: Icon(
-                  Icons.euro_rounded,
-                  color: Colors.black,
+                  icon,
+                  color: isInverted ? _blackColor : Colors.white,
+                  // 아이콘 크기는 고정,
+                  // transform으로 아이콘 사이즈 변경하여 카드 크기 유지
                   size: 80,
                 ),
               ),
