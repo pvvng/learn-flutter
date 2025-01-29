@@ -23,18 +23,13 @@ class MyApp extends StatefulWidget {
 // 상태는 class의 property임 별게 아님
 class _MyAppState extends State<MyApp> {
   // 상태 선언
-  int counter = 0;
+  List<int> numbers = [];
   // 반드시 setState 함수를 통해 프로퍼티를 변경시켜야만 ui가 리렌더링됨.
   // 정확히는 build 메서드를 재실행 하는것
   void onClick() {
     setState(() {
-      counter += 1;
+      numbers.add(numbers.length);
     });
-    print(counter);
-    // 이렇게 해도 되긴 함. 근데 가독성은 좀..
-    // 이게 되는걸 보면 setState는 build 메서드 실행 함수인듯
-    // counter += 1;
-    // setState(() {});
   }
 
   // 모든 위젯은 build 메서드를 사용해야 한다
@@ -55,12 +50,8 @@ class _MyAppState extends State<MyApp> {
                   fontSize: 30,
                 ),
               ),
-              Text(
-                "$counter",
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
+              // for collection (like js map)
+              for (var number in numbers) Text("$number"),
               IconButton(
                 onPressed: onClick,
                 icon: Icon(Icons.add_box_outlined),
