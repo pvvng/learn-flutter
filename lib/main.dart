@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:toonflix/widget/button.dart';
-import 'package:toonflix/widget/card.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,11 +6,36 @@ void main() {
 
 // 모든 것은 위젯이다. 블록처럼 위젯에 위젯을 쌓아가며 앱을 만드는 것.
 // class를 위젯으로 만들기 위해서는 상속이 필요함
-class MyApp extends StatelessWidget {
+
+// StatefulWidget은 두가지 부분으로 나뉨
+// 그냥 위젯을 가진 부분
+class MyApp extends StatefulWidget {
   // 상수화 시켜서 컴파일하기 편하게 만들기
   const MyApp({
     super.key,
   });
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+// 상태를 가진 부분
+// 상태는 class의 property임 별게 아님
+class _MyAppState extends State<MyApp> {
+  // 상태 선언
+  int counter = 0;
+  // 반드시 setState 함수를 통해 프로퍼티를 변경시켜야만 ui가 리렌더링됨.
+  // 정확히는 build 메서드를 재실행 하는것
+  void onClick() {
+    setState(() {
+      counter += 1;
+    });
+    print(counter);
+    // 이렇게 해도 되긴 함. 근데 가독성은 좀..
+    // 이게 되는걸 보면 setState는 build 메서드 실행 함수인듯
+    // counter += 1;
+    // setState(() {});
+  }
 
   // 모든 위젯은 build 메서드를 사용해야 한다
   @override
@@ -21,129 +44,29 @@ class MyApp extends StatelessWidget {
     // CupertinoApp -> ios
     // MaterialApp -> android
     return MaterialApp(
-      // 위젯은 Scaffold(건물 뼈대 너낌)를 가진다.
       home: Scaffold(
-        backgroundColor: Color(0xFF181818),
-        // Column -> 상하로 쌓기
-        // SingleChildScrollView -> 스크롤 가능하도록
-        body: SingleChildScrollView(
-          child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 50,
-                  ),
-                  // Row -> 좌우로 정렬
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        textDirection: TextDirection.ltr, // 텍스트 방향 설정
-                        children: [
-                          Text(
-                            "Hey Kim",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w800),
-                          ),
-                          Text(
-                            "Wellcome Back",
-                            style: TextStyle(
-                              color: Colors.white.withAlpha(180),
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    "Total Balance",
-                    style: TextStyle(
-                      color: Colors.white.withAlpha(200),
-                      fontSize: 16,
-                    ),
-                  ),
-                  Text(
-                    "\$5 194 382",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 38),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      MyButton(
-                        "transfer",
-                        backgroundColor: Color(0xFFF2B33A),
-                      ),
-                      MyButton(
-                        "request",
-                        textColor: Colors.white,
-                        backgroundColor: Color(0xFF1F2123),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 70,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Wallets",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      Text(
-                        "View All",
-                        style: TextStyle(
-                          color: Colors.white.withAlpha(200),
-                          fontSize: 18,
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  MyCard(
-                    name: "Euro",
-                    amount: "6 428",
-                    code: "EUR",
-                    icon: Icons.euro_rounded,
-                    order: 0,
-                  ),
-                  MyCard(
-                    name: "BitCoin",
-                    amount: "9 785",
-                    code: "BTC",
-                    icon: Icons.currency_bitcoin_rounded,
-                    order: 1,
-                  ),
-                  MyCard(
-                    name: "Dollar",
-                    amount: "428",
-                    code: "USD",
-                    icon: Icons.attach_money_rounded,
-                    order: 2,
-                  ),
-                ],
-              )),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "click",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
+              Text(
+                "$counter",
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+              IconButton(
+                onPressed: onClick,
+                icon: Icon(Icons.add_box_outlined),
+              )
+            ],
+          ),
         ),
       ),
     );
