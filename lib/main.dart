@@ -22,13 +22,11 @@ class MyApp extends StatefulWidget {
 // 상태를 가진 부분
 // 상태는 class의 property임 별게 아님
 class _MyAppState extends State<MyApp> {
-  // 상태 선언
-  List<int> numbers = [];
-  // 반드시 setState 함수를 통해 프로퍼티를 변경시켜야만 ui가 리렌더링됨.
-  // 정확히는 build 메서드를 재실행 하는것
-  void onClick() {
+  bool showTitle = true;
+
+  void toggleTitle() {
     setState(() {
-      numbers.add(numbers.length);
+      showTitle = !showTitle;
     });
   }
 
@@ -53,7 +51,13 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              MyLargeTitle(),
+              showTitle ? MyLargeTitle() : Text("noting.."),
+              IconButton(
+                onPressed: toggleTitle,
+                icon: Icon(
+                  Icons.add_box,
+                ),
+              )
             ],
           ),
         ),
@@ -63,13 +67,44 @@ class _MyAppState extends State<MyApp> {
 }
 
 // 분리한 위젯에서 부모(App)에서 정의한 theme을 사용하는 것이 목적
-class MyLargeTitle extends StatelessWidget {
+class MyLargeTitle extends StatefulWidget {
   const MyLargeTitle({
     super.key,
   });
 
   @override
+  State<MyLargeTitle> createState() => _MyLargeTitleState();
+}
+
+/// Widget Life Cycle
+// 아래 위젯 렌더링 시
+// flutter: state init
+// flutter: build
+// 아래 위젯 화면에서 제거 시
+// flutter: dispoesed
+class _MyLargeTitleState extends State<MyLargeTitle> {
+  // state 초기화를 위한 메서드
+  // 항상 여기서 상태 초기화 할 필요는 없음. 보통 property로 초기화함
+  // 또한, initstate는 build 보다 항상 먼저 실행되어야 함
+  // 예시) API 업데이트 구독
+  // api 상태를 먼저 받고 build(렌더링) 하니까 잘 되는거인듯
+  @override
+  void initState() {
+    super.initState();
+    print("state init");
+  }
+
+  // 위젯이 스크린에서 제거될 때 호출되는 메서드
+  // 예시) API 구독 해지
+  @override
+  void dispose() {
+    super.dispose();
+    print("dispoesed");
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print("build");
     // context는 상위 요소(부모)들에 대한 정보가 담김
     // 즉, 위젯트리에 대한 정보가 담긴 것임
     // context를 통해 부모의 상태에는 접근이 불가능함.
