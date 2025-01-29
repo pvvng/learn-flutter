@@ -39,26 +39,46 @@ class _MyAppState extends State<MyApp> {
     // CupertinoApp -> ios
     // MaterialApp -> android
     return MaterialApp(
+      // 앱의 레이아웃 정의하는 느낌?
+      // 폰트나 배경색 등을 미리 정의
+      theme: ThemeData(
+        textTheme: TextTheme(
+          titleLarge: TextStyle(
+            color: Colors.red,
+          ),
+        ),
+      ),
       home: Scaffold(
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "click",
-                style: TextStyle(
-                  fontSize: 30,
-                ),
-              ),
-              // for collection (like js map)
-              for (var number in numbers) Text("$number"),
-              IconButton(
-                onPressed: onClick,
-                icon: Icon(Icons.add_box_outlined),
-              )
+              MyLargeTitle(),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+// 분리한 위젯에서 부모(App)에서 정의한 theme을 사용하는 것이 목적
+class MyLargeTitle extends StatelessWidget {
+  const MyLargeTitle({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // context는 상위 요소(부모)들에 대한 정보가 담김
+    // 즉, 위젯트리에 대한 정보가 담긴 것임
+    // context를 통해 부모의 상태에는 접근이 불가능함.
+    return Text(
+      "MyLargeTitle",
+      style: TextStyle(
+        fontSize: 30,
+        // 부모로 접근하는 방법
+        color: Theme.of(context).textTheme.titleLarge?.color,
       ),
     );
   }
