@@ -57,6 +57,15 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void onRefreshPressed() {
+    setState(() {
+      isRunning = false;
+      totalSeconds = twentyFiveMinutes;
+    });
+
+    timer.cancel();
+  }
+
   String format(int seconds) {
     var duration = Duration(seconds: seconds);
     var [_, minute, second] = duration.toString().split(".").first.split(":");
@@ -87,17 +96,35 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Flexible(
             flex: 2,
-            child: Center(
-              child: IconButton(
-                iconSize: 120,
-                color: Theme.of(context).cardColor,
-                onPressed: isRunning ? onPausePressed : onStartPressed,
-                icon: Icon(
-                  isRunning
-                      ? Icons.pause_circle_outline_outlined
-                      : Icons.play_circle_outlined,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  iconSize: 120,
+                  color: Theme.of(context).cardColor,
+                  onPressed: isRunning ? onPausePressed : onStartPressed,
+                  icon: Icon(
+                    isRunning
+                        ? Icons.pause_circle_outline_outlined
+                        : Icons.play_circle_outlined,
+                  ),
                 ),
-              ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                      onPressed: onRefreshPressed,
+                      child: Text(
+                        "🔄 refresh?",
+                        style: TextStyle(
+                          color: Theme.of(context).cardColor,
+                          fontSize: 25,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
           Flexible(
